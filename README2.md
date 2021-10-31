@@ -1,3 +1,9 @@
+# 配置代理
+
+```
+go mod download
+```
+
 # 打包
 
 ## linux下打包windows服务器的软件
