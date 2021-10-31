@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	log "github.com/sirupsen/logrus"
 	"net"
 	"os"
 	"os/exec"
-	"path/filepath"
 	"syscall"
 	"time"
 )
@@ -13,7 +13,7 @@ import (
 var pluginCmd *exec.Cmd
 
 func startPlugin(plugin, pluginOpts, ssAddr string, isServer bool) (newAddr string, err error) {
-	logf("starting plugin (%s) with option (%s)....", plugin, pluginOpts)
+	log.Printf("starting plugin (%s) with option (%s)....", plugin, pluginOpts)
 	freePort, err := getFreePort()
 	if err != nil {
 		return "", fmt.Errorf("failed to fetch an unused port for plugin (%v)", err)
@@ -28,9 +28,9 @@ func startPlugin(plugin, pluginOpts, ssAddr string, isServer bool) (newAddr stri
 		if ssHost == "" {
 			ssHost = "0.0.0.0"
 		}
-		logf("plugin (%s) will listen on %s:%s", plugin, ssHost, ssPort)
+		log.Printf("plugin (%s) will listen on %s:%s", plugin, ssHost, ssPort)
 	} else {
-		logf("plugin (%s) will listen on %s:%s", plugin, localHost, freePort)
+		log.Printf("plugin (%s) will listen on %s:%s", plugin, localHost, freePort)
 	}
 	err = execPlugin(plugin, pluginOpts, ssHost, ssPort, localHost, freePort)
 	return
@@ -54,43 +54,43 @@ func killPlugin() {
 }
 
 func execPlugin(plugin, pluginOpts, remoteHost, remotePort, localHost, localPort string) (err error) {
-	pluginFile := plugin
-	if fileExists(plugin) {
-		if !filepath.IsAbs(plugin) {
-			pluginFile = "./" + plugin
-		}
-	} else {
-		pluginFile, err = exec.LookPath(plugin)
-		if err != nil {
-			return err
-		}
-	}
-	logH := newLogHelper("[" + plugin + "]: ")
-	env := append(os.Environ(),
-		"SS_REMOTE_HOST="+remoteHost,
-		"SS_REMOTE_PORT="+remotePort,
-		"SS_LOCAL_HOST="+localHost,
-		"SS_LOCAL_PORT="+localPort,
-		"SS_PLUGIN_OPTIONS="+pluginOpts,
-	)
-	cmd := &exec.Cmd{
-		Path:   pluginFile,
-		Env:    env,
-		Stdout: logH,
-		Stderr: logH,
-	}
-	if err = cmd.Start(); err != nil {
-		return err
-	}
-	pluginCmd = cmd
-	go func() {
-		if err := cmd.Wait(); err != nil {
-			logf("plugin exited (%v)\n", err)
-			os.Exit(2)
-		}
-		logf("plugin exited\n")
-		os.Exit(0)
-	}()
+	//pluginFile := plugin
+	//if fileExists(plugin) {
+	//	if !filepath.IsAbs(plugin) {
+	//		pluginFile = "./" + plugin
+	//	}
+	//} else {
+	//	pluginFile, err = exec.LookPath(plugin)
+	//	if err != nil {
+	//		return err
+	//	}
+	//}
+	//logH := newLogHelper("[" + plugin + "]: ")
+	//env := append(os.Environ(),
+	//	"SS_REMOTE_HOST="+remoteHost,
+	//	"SS_REMOTE_PORT="+remotePort,
+	//	"SS_LOCAL_HOST="+localHost,
+	//	"SS_LOCAL_PORT="+localPort,
+	//	"SS_PLUGIN_OPTIONS="+pluginOpts,
+	//)
+	//cmd := &exec.Cmd{
+	//	Path:   pluginFile,
+	//	Env:    env,
+	//	Stdout: logH,
+	//	Stderr: logH,
+	//}
+	//if err = cmd.Start(); err != nil {
+	//	return err
+	//}
+	//pluginCmd = cmd
+	//go func() {
+	//	if err := cmd.Wait(); err != nil {
+	//		log.Printf("plugin exited (%v)\n", err)
+	//		os.Exit(2)
+	//	}
+	//	log.Printf("plugin exited\n")
+	//	os.Exit(0)
+	//}()
 	return nil
 }
 

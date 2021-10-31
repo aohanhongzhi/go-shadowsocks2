@@ -6,7 +6,6 @@ import (
 	"flag"
 	"fmt"
 	"io"
-	"log"
 	"net/url"
 	"os"
 	"os/signal"
@@ -16,15 +15,23 @@ import (
 
 	"github.com/shadowsocks/go-shadowsocks2/core"
 	"github.com/shadowsocks/go-shadowsocks2/socks"
+	log "github.com/sirupsen/logrus"
 )
 
 var config struct {
 	Verbose    bool
 	UDPTimeout time.Duration
 	TCPCork    bool
+	LogFile    bool // 日志存储到文件
+	LogLevel   string
 }
 
 func main() {
+	log.SetFormatter(&log.TextFormatter{
+		FullTimestamp: true,
+	})
+	//  展示文件行数和方法信息
+	log.SetReportCaller(true)
 
 	var flags struct {
 		Client     string
@@ -63,8 +70,17 @@ func main() {
 	flag.BoolVar(&flags.UDP, "udp", false, "(server-only) enable UDP support")
 	flag.BoolVar(&flags.TCP, "tcp", true, "(server-only) enable TCP support")
 	flag.BoolVar(&config.TCPCork, "tcpcork", false, "coalesce writing first few packets")
+	flag.BoolVar(&config.LogFile, "log", false, "log file to console, 日志存储到文件中")
+	flag.StringVar(&config.LogLevel, "loglevel", "warn", "log level，日志级别")
 	flag.DurationVar(&config.UDPTimeout, "udptimeout", 5*time.Minute, "UDP tunnel timeout")
 	flag.Parse()
+	level, err := log.ParseLevel(config.LogLevel)
+	if err != nil {
+		println("log level error")
+		level = log.WarnLevel
+	}
+	log.SetLevel(level)
+	log.Info("开始执行")
 
 	if flags.Keygen > 0 {
 		key := make([]byte, flags.Keygen)
