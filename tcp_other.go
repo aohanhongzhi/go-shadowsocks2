@@ -4,12 +4,14 @@ package main
 
 import (
 	"net"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func redirLocal(addr, server string, shadow func(net.Conn) net.Conn) {
-	logf("TCP redirect not supported")
+	log.Printf("TCP redirect not supported")
 }
 
 func redir6Local(addr, server string, shadow func(net.Conn) net.Conn) {
-	logf("TCP6 redirect not supported")
+	log.Printf("TCP6 redirect not supported")
 }
