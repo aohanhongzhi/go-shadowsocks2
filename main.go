@@ -29,6 +29,7 @@ var config struct {
 func main() {
 	log.SetFormatter(&log.TextFormatter{
 		FullTimestamp: true,
+		ForceColors:   true,
 	})
 	//  展示文件行数和方法信息
 	log.SetReportCaller(true)

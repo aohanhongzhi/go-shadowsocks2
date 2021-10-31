@@ -65,7 +65,7 @@ func tcpLocal(addr, server string, shadow func(net.Conn) net.Conn, getAddr func(
 					}
 				}
 				// FIXME 访问某些网站，这里就会报错
-				log.Errorf("failed to get target address: %v", err)
+				log.Errorf("failed to get target address: %v", err.Error())
 				return
 			}
 

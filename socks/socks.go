@@ -2,6 +2,7 @@
 package socks
 
 import (
+	log "github.com/sirupsen/logrus"
 	"io"
 	"net"
 	"strconv"
@@ -93,6 +94,8 @@ func readAddr(r io.Reader, b []byte) (Addr, error) {
 		_, err = io.ReadFull(r, b[1:1+net.IPv6len+2])
 		return b[:1+net.IPv6len+2], err
 	}
+
+	log.Error("不支持的地址协议")
 
 	return nil, ErrAddressNotSupported
 }
