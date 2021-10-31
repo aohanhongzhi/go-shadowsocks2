@@ -7,6 +7,16 @@
 ```shell
 go build main.go tcp.go udp.go  plugin.go tcp_linux.go -o main.exe
 ```
+## windwos下打包
+运行
+```
+go run .\
+```
+打包
+```
+ go build .\
+```
+
 
 # 运行
 
