@@ -7,6 +7,9 @@ GOPROXY=https://goproxy.cn,direct
 go mod download
 ```
 
+![img_1.png](img_1.png)
+
+
 # 打包
 
 ## linux下打包windows服务器的软件
