@@ -1,5 +1,7 @@
 # go-shadowsocks2
 
+[中文](./README2.md)
+
 A fresh implementation of Shadowsocks in Go.
 
 GoDoc at https://godoc.org/github.com/shadowsocks/go-shadowsocks2/
