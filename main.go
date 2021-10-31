@@ -34,8 +34,8 @@ func main() {
 	log.SetReportCaller(true)
 
 	var flags struct {
-		Client     string
-		Server     string
+		Client     string // 客户端模式
+		Server     string // 服务器模式
 		Cipher     string
 		Key        string
 		Password   string
@@ -74,6 +74,8 @@ func main() {
 	flag.StringVar(&config.LogLevel, "loglevel", "warn", "log level，日志级别")
 	flag.DurationVar(&config.UDPTimeout, "udptimeout", 5*time.Minute, "UDP tunnel timeout")
 	flag.Parse()
+
+	// 解析日志级别，设置日志级别，默认WARN，没必要打印所有日志。
 	level, err := log.ParseLevel(config.LogLevel)
 	if err != nil {
 		println("log level error")
@@ -202,6 +204,7 @@ func main() {
 	killPlugin()
 }
 
+// 解析输入的地址
 func parseURL(s string) (addr, cipher, password string, err error) {
 	u, err := url.Parse(s)
 	if err != nil {
@@ -215,3 +218,5 @@ func parseURL(s string) (addr, cipher, password string, err error) {
 	}
 	return
 }
+
+// TODO 解析json文件
