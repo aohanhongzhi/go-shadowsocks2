@@ -1,4 +1,12 @@
+# 打包
 
+## linux下打包windows服务器的软件
+```shell
+ CGO_ENABLED=0 GOOS=windows GOARCH=amd64
+```
+```shell
+go build main.go tcp.go udp.go  plugin.go tcp_linux.go -o main.exe
+```
 
 # 运行
 
