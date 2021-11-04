@@ -47,6 +47,11 @@ go run .\
 -loglevel debug
 ```
 
+### deepin配置socks5代理
+
+![](deepin-proxy-socks.png)
+
+
 # 日志设置
 写入到本地磁盘，目前已经切换到logrus了。
 
