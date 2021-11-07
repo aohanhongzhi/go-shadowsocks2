@@ -1,3 +1,8 @@
+
+# shadowsocks官网有全平台终端
+
+https://shadowsocks.org/en/download/clients.html
+
 # go开发环境配置代理
 ```shell
 GOPROXY=https://goproxy.cn,direct
