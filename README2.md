@@ -56,7 +56,10 @@ go run .\
 ```shell
 -loglevel debug
 ```
-
+密码加密方式要一样啊。
+```shell
+./go-shadowsocks2 -c 'ss://AEAD_AES_256_GCM:AmtB2BWzJh@[159.223.92.56]:22906' -verbose -socks :1080 -u --loglevel debug
+```
 ### deepin配置socks5代理
 
 ![](deepin-proxy-socks.png)
