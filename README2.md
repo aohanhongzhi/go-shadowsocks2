@@ -85,9 +85,15 @@ golang.org/x/sys/windows.WSAECONNABORTED (10053)
 
 
 # 测速
+
 [使用iperf测试两台电脑之间的网速](https://www.jianshu.com/p/904a919db6ef):注意版本2和3,一般是3.
 
 https://iperf.fr/iperf-download.php
+
+网速问题
+
+https://github.com/shadowsocks/go-shadowsocks2/issues/219
+
 ![](./服务器测速.png)
 ![](./noproxy测试.png)
 #  BBR是google研发的一种拥塞控制算法-加速
