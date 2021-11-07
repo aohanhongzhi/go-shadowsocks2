@@ -7,6 +7,8 @@ https://shadowsocks.org/en/download/clients.html
 
 # go开发环境配置代理
 
+[windows服务器下搭建梯子shadowsocks](https://docs.qq.com/doc/DSHhDYkFHRU56a3ph)
+
 本项目原地址：https://github.com/shadowsocks/go-shadowsocks2
 
 ```shell
