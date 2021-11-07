@@ -1,9 +1,14 @@
 
 # shadowsocks官网有全平台终端
 
+有客户端和server端
+
 https://shadowsocks.org/en/download/clients.html
 
 # go开发环境配置代理
+
+本项目原地址：https://github.com/shadowsocks/go-shadowsocks2
+
 ```shell
 GOPROXY=https://goproxy.cn,direct
 ```
@@ -74,3 +79,15 @@ golang.org/x/sys/windows.WSAECONNABORTED (10053)
 ![](./firefox.png)
 ![](./firefox-proxy.png)
 ![](./firefox-proxy-google.png)
+
+
+# 测速
+[使用iperf测试两台电脑之间的网速](https://www.jianshu.com/p/904a919db6ef):注意版本2和3,一般是3.
+
+https://iperf.fr/iperf-download.php
+![](./服务器测速.png)
+![](./noproxy测试.png)
+#  BBR是google研发的一种拥塞控制算法-加速
+https://www.iq97.com/jishubiji/20210708/125.html
+
+
