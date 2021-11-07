@@ -123,8 +123,7 @@ func main() {
 
 		ciph, err := core.PickCipher(cipher, key, password)
 		if err != nil {
-			log.Error("密码不支持")
-			log.Fatal(err)
+			log.Fatal(err, "密码不支持")
 		}
 
 		if flags.Plugin != "" {
