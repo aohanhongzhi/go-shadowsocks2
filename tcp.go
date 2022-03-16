@@ -71,6 +71,7 @@ func tcpLocal(addr, server string, shadow func(net.Conn) net.Conn, getAddr func(
 
 			rc, err := net.Dial("tcp", server)
 			if err != nil {
+				// FIXME 服务器端口正常，但是连接失败
 				log.Errorf("failed to connect to server %v: %v", server, err)
 				return
 			}

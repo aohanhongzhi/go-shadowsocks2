@@ -52,7 +52,7 @@ go run .\
 
 ## 客户端
 ```shell
--c 'ss://AEAD_CHACHA20_POLY1305:123456@[47.88.21.103]:8488' -verbose -socks :1080 -u
+-c 'ss://AEAD_CHACHA20_POLY1305:123456@[47.88.21.103]:8488' -verbose -socks :1080 -u --loglevel debug
 ```
 加上日志级别
 ```shell
